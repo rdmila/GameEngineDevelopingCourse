@@ -96,5 +96,54 @@ namespace GameEngine::Core
 
 			return result;
 		}
+
+		Matrix4x4f RotationMatrixLH(Vector3f angles)
+		{
+			Matrix4x4f result;
+
+			float cosX = cosf(angles.x);
+			float sinX = sinf(angles.x);
+			float cosY = cosf(angles.y);
+			float sinY = sinf(angles.y);
+			float cosZ = cosf(angles.z);
+			float sinZ = sinf(angles.z);
+
+			result.SetElement(cosY * cosZ, 0, 0);
+			result.SetElement(cosY * sinZ, 0, 1);
+			result.SetElement(-sinY, 0, 2);
+			result.SetElement(0, 0, 3);
+
+			result.SetElement(sinX * sinY * cosZ - cosX * sinZ, 1, 0);
+			result.SetElement(sinX * sinY * sinZ + cosX * cosZ, 1, 1);
+			result.SetElement(sinX * cosY, 1, 2);
+			result.SetElement(0, 1, 3);
+
+			result.SetElement(cosX * sinY * cosZ + sinX * sinZ, 2, 0);
+			result.SetElement(cosX * sinY * sinZ - sinX * cosZ, 2, 1);
+			result.SetElement(cosX * cosY, 2, 2);
+			result.SetElement(0, 2, 3);
+
+			result.SetElement(1, 3, 3);
+
+			return result;
+		}
+
+		Matrix4x4f WorldMatrixLH(Vector3f angles, Vector3f scalingVec, Vector3f translationVec)
+		{
+			Matrix4x4f rotation = RotationMatrixLH(angles);
+
+			Matrix4x4f scalingMatrix;
+			scalingMatrix.SetElement(scalingVec.x, 0, 0);
+			scalingMatrix.SetElement(scalingVec.y, 1, 1);
+			scalingMatrix.SetElement(scalingVec.z, 2, 2);
+			scalingMatrix.SetElement(1, 3, 3);
+
+			Matrix4x4f translationMatrix = Matrix4x4f::Identity();
+			translationMatrix.SetElement(translationVec.x, 0, 3);
+			translationMatrix.SetElement(translationVec.y, 1, 3);
+			translationMatrix.SetElement(translationVec.z, 2, 3);
+
+			return scalingMatrix * rotation * translationMatrix;
+		}
 	}
 }

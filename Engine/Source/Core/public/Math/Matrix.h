@@ -114,5 +114,15 @@ namespace GameEngine::Core
 			float NearZ,
 			float FarZ
 		);
+
+		CORE_API Matrix4x4f RotationMatrixLH(
+			Vector3f angles
+		);
+
+		CORE_API Matrix4x4f WorldMatrixLH(
+			Vector3f angles, 
+			Vector3f scalingVec, 
+			Vector3f translationVec
+		);
 	}
 }
