@@ -16,6 +16,7 @@ namespace GameEngine
 			DOWN,
 			LEFT,
 			RIGHT,
+			N,
 
 			UNKNOWN
 		};

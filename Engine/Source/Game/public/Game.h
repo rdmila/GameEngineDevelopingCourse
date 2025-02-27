@@ -29,5 +29,18 @@ namespace GameEngine
 		Core::Timer m_GameTimer;
 		std::unique_ptr<Render::RenderThread> m_renderThread;
 		std::vector<GameObject*> m_Objects;
+
+	private:
+		struct Army 
+		{
+			std::vector<int> cubes;
+			uint32_t cur = 0;
+			int32_t dir = 0;
+
+			void nextCube();
+			int getCurId();
+		};
+
+		Army army;
 	};
 }

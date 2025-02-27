@@ -39,8 +39,16 @@ namespace GameEngine::Core
 
 	void InputHandler::Update()
 	{
-		for (const KeyboardButton& kb : m_PressedKB)
+		auto i = m_PressedKB.begin();
+		while (i != m_PressedKB.end())
 		{
+			auto kb = *i;
+			if (kb == KeyboardButton::N) {
+				i = m_PressedKB.erase(i);
+			}
+			else {
+				i++;
+			}
 			m_ActionMapEventManager->CallEvent(m_KeyboardEventMap[kb]);
 		}
 	}

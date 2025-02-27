@@ -11,7 +11,8 @@ namespace GameEngine::Core
 		{"a", KeyboardButton::A},
 		{"w", KeyboardButton::W},
 		{"s", KeyboardButton::S},
-		{"d", KeyboardButton::D}
+		{"d", KeyboardButton::D},
+		{"n", KeyboardButton::N}
 	};
 
 	KeyboardButton StringToKeyboardButton(const std::string& key)
