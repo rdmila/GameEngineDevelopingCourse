@@ -63,6 +63,7 @@ namespace GameEngine::Core
 			return;
 		}
 
+		m_ReleaseEvents.set(KeyboardButtonCount + static_cast<size_t>(mb), true);
 		m_PressedButtons.set(KeyboardButtonCount + static_cast<size_t>(mb), false);
 	}
 
@@ -84,5 +85,12 @@ namespace GameEngine::Core
 		dy *= 0.25 * Math::Constants::PI / 180.f;
 
 		g_MainCamera->Rotate(dx, dy);
+	}
+	bool InputHandler::ProcessClick(MouseButton mb)
+	{
+		assert(mb != MouseButton::UNKNOWN);
+		bool res = m_ReleaseEvents.test(KeyboardButtonCount + static_cast<size_t>(mb));
+		m_ReleaseEvents.set(KeyboardButtonCount + static_cast<size_t>(mb), false);
+		return res;
 	}
 }

@@ -17,6 +17,7 @@ namespace GameEngine
 
 		public:
 			bool IsPressed(const std::string& event);
+			bool IsClicked(const std::string& event);
 
 		private:
 			std::unordered_map<std::string, KeyboardButton> m_KeyboardEventMap;

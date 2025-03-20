@@ -46,6 +46,7 @@ void GameFramework::Init()
 		.set(EntitySystem::ECS::RenderObjectPtr{ new Render::RenderObject() });
 
 
+
 	flecs::entity camera = m_World.entity()
 		.set(Position{ 0.0f, 12.0f, -10.0f })
 		.set(Speed{ 10.f })

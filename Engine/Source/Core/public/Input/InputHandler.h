@@ -28,11 +28,18 @@ namespace GameEngine::Core
 		bool IsKeyPressed(MouseButton mb) const;
 		void OnMouseMove(float dx, float dy);
 
+		bool ProcessClick(MouseButton kb);
+
 	private:
 		std::bitset<
 			KeyboardButtonCount +
 			MouseButtonCount
 		> m_PressedButtons;
+
+		std::bitset<
+			KeyboardButtonCount +
+			MouseButtonCount
+		> m_ReleaseEvents;
 
 		static InputHandler* m_Instance;
 	};

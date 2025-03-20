@@ -26,6 +26,8 @@ namespace GameEngine
 				return KeyboardButton::W;
 			case 'D':
 				return KeyboardButton::D;
+			case 'K':
+				return KeyboardButton::K;
 			case VK_SPACE:
 				return KeyboardButton::SPACEBAR;
 			case VK_F2:
@@ -40,9 +42,9 @@ namespace GameEngine
 			switch (mk)
 			{
 			case MK_LBUTTON:
-				return MouseButton::LMB;
+				//return MouseButton::LMB;
 			default:
-				return MouseButton::UNKNOWN;
+				return MouseButton::LMB;
 			}
 		}
 	}

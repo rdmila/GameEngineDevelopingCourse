@@ -31,6 +31,8 @@ namespace GameEngine::Core
 		}
 	}
 
+	
+
 	bool Controller::IsPressed(const std::string& event)
 	{
 		if (m_MouseEventMap.contains(event))
@@ -45,4 +47,15 @@ namespace GameEngine::Core
 
 		return false;
 	}
+
+	bool Controller::IsClicked(const std::string& event)
+	{
+		if (m_MouseEventMap.contains(event))
+		{
+			return InputHandler::GetInstance()->ProcessClick(m_MouseEventMap[event]);
+		}
+		return false;
+	}
+
+	
 }
