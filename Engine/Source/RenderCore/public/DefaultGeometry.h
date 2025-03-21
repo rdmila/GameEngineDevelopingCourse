@@ -10,18 +10,18 @@ namespace GameEngine
 	{
 		namespace DefaultGeometry
 		{
-			Geometry::Ptr Cube()
+			inline Geometry::Ptr Cube(float len = 1.0f)
 			{
-				constexpr Core::array<Geometry::VertexType, 8> vertices =
+				Core::array<Geometry::VertexType, 8> vertices =
 				{
-					Math::Vector3f(-1.0f, -1.0f, -1.0f),
-					Math::Vector3f(-1.0f, +1.0f, -1.0f),
-					Math::Vector3f(+1.0f, +1.0f, -1.0f),
-					Math::Vector3f(+1.0f, -1.0f, -1.0f),
-					Math::Vector3f(-1.0f, -1.0f, +1.0f),
-					Math::Vector3f(-1.0f, +1.0f, +1.0f),
-					Math::Vector3f(+1.0f, +1.0f, +1.0f),
-					Math::Vector3f(+1.0f, -1.0f, +1.0f)
+					Math::Vector3f(-len, -len, -len),
+					Math::Vector3f(-len, +len, -len),
+					Math::Vector3f(+len, +len, -len),
+					Math::Vector3f(+len, -len, -len),
+					Math::Vector3f(-len, -len, +len),
+					Math::Vector3f(-len, +len, +len),
+					Math::Vector3f(+len, +len, +len),
+					Math::Vector3f(+len, -len, +len)
 				};
 
 				constexpr Core::array<Geometry::IndexType, 36> indices =
