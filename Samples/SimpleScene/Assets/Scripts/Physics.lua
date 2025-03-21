@@ -69,10 +69,44 @@ local function DestructionTimerSystem(it)
 	end
 end
 
+q = ecs.query("AimTag, Position")
+
+local function vec_len2(x, y, z)
+	return x * x + y * y + z * z
+end
+
+local function dist(x1, y1, z1, x2, y2, z2)
+	return vec_len2(x1-x2, y1-y2, z1-z2)
+end
+
+local function BulletSearch(it)
+	for bul, bul_pos in ecs.each(it) do
+		for aim, aim_pos in ecs.each(q) do
+			if dist(bul_pos.x, bul_pos.y, bul_pos.z, aim_pos.x, aim_pos.y, aim_pos.z) <= 1.0 then
+				aim_pos.z = 1000.0
+			end
+		end
+	end
+end
+
+
+-- local function OnFloor(it)
+-- 	for bul, pos, plane, e in ecs.each(it) do
+-- 		local dotPos = plane.x * pos.x + plane.y * pos.y + plane.z * pos.z
+-- 		if dotPos <= plane.w then
+-- 			ecs.set(e, DestructionTimer, { value=1.0 })
+-- 		end
+-- 	end
+-- end
+
+
 ecs.system(move, "Move", ecs.OnUpdate, "Position, Velocity")
 ecs.system(gravity, "grav", ecs.OnUpdate, "Position, Velocity, Gravity, BouncePlane")
 ecs.system(FrictionSystem, "FrictionSystem", ecs.OnUpdate, "Velocity, FrictionAmount")
 ecs.system(ShiverSystem, "ShiverSystem", ecs.OnUpdate, "Position, ShiverAmount")
 ecs.system(BounceSystem, "BounceSystem", ecs.OnUpdate, "Position, Velocity, BouncePlane, Bounciness")
 
+
 ecs.system(DestructionTimerSystem, "DestructionTimerSystem", ecs.OnUpdate, "DestructionTimer, Position")
+ecs.system(BulletSearch, "BulletSearch", ecs.OnUpdate, "BulletTag, Position")
+-- ecs.system(OnFloor, "OnFloor", ecs.OnUpdate, "BulletTag, Position, BouncePlane, !DestructionTimer")

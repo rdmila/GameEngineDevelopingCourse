@@ -26,8 +26,6 @@ namespace GameEngine
 				return KeyboardButton::W;
 			case 'D':
 				return KeyboardButton::D;
-			case 'K':
-				return KeyboardButton::K;
 			case VK_SPACE:
 				return KeyboardButton::SPACEBAR;
 			case VK_F2:

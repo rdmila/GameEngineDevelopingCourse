@@ -63,4 +63,6 @@ ECS_STRUCT(DestructionTimer,
 	float value;
 });
 
-ECS_STRUCT(BulletTag, {});
+ECS_STRUCT(AimTag, { float value; });
+
+ECS_STRUCT(BulletTag, { float value; });

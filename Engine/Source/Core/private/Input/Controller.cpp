@@ -37,7 +37,7 @@ namespace GameEngine::Core
 	{
 		if (m_MouseEventMap.contains(event))
 		{
-			return InputHandler::GetInstance()->IsKeyPressed(m_MouseEventMap[event]);
+			return InputHandler::GetInstance()->ProcessClick(m_MouseEventMap[event]);
 		}
 
 		if (m_KeyboardEventMap.contains(event))

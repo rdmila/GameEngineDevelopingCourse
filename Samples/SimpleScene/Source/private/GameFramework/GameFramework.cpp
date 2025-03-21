@@ -34,6 +34,7 @@ void GameFramework::Init()
 		.set(EntitySystem::ECS::GeometryPtr{ RenderCore::DefaultGeometry::Cube() })
 		.set(EntitySystem::ECS::RenderObjectPtr{ new Render::RenderObject() })
 		.set(ControllerPtr{ new Core::Controller(Core::g_FileSystem->GetConfigPath("Input_default.ini")) })
+		.set(AimTag{ 0.0f })
 		.set(DestructionTimer{ 1.f });
 
 	flecs::entity cubeMoving = m_World.entity()
@@ -42,6 +43,7 @@ void GameFramework::Init()
 		.set(Gravity{ 0.f, -9.8065f, 0.f })
 		.set(BouncePlane{ 0.f, 1.f, 0.f, 5.f })
 		.set(Bounciness{ 1.f })
+		.set(AimTag{ 0.0f })
 		.set(EntitySystem::ECS::GeometryPtr{ RenderCore::DefaultGeometry::Cube() })
 		.set(EntitySystem::ECS::RenderObjectPtr{ new Render::RenderObject() });
 
@@ -66,6 +68,9 @@ void GameFramework::RegisterComponents()
 	ECS_META_COMPONENT(m_World, FrictionAmount);
 	ECS_META_COMPONENT(m_World, Speed);
 	ECS_META_COMPONENT(m_World, DestructionTimer);
+	ECS_META_COMPONENT(m_World, AimTag);
+	ECS_META_COMPONENT(m_World, BulletTag);
+
 }
 
 void GameFramework::RegisterSystems()
