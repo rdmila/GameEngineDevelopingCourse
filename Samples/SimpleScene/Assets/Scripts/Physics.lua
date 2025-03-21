@@ -60,9 +60,19 @@ local function BounceSystem(it)
     end
 end
 
+local function DestructionTimerSystem(it)
+	for timer, pos in ecs.each(it) do
+		timer.value = timer.value - it.delta_time
+		if timer.value < 0 then
+			pos.z = 1000.0
+		end
+	end
+end
+
 ecs.system(move, "Move", ecs.OnUpdate, "Position, Velocity")
 ecs.system(gravity, "grav", ecs.OnUpdate, "Position, Velocity, Gravity, BouncePlane")
 ecs.system(FrictionSystem, "FrictionSystem", ecs.OnUpdate, "Velocity, FrictionAmount")
 ecs.system(ShiverSystem, "ShiverSystem", ecs.OnUpdate, "Position, ShiverAmount")
 ecs.system(BounceSystem, "BounceSystem", ecs.OnUpdate, "Position, Velocity, BouncePlane, Bounciness")
 
+ecs.system(DestructionTimerSystem, "DestructionTimerSystem", ecs.OnUpdate, "DestructionTimer, Position")

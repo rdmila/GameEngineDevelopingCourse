@@ -6,6 +6,9 @@
 #include <Input/Controller.h>
 #include <Input/InputHandler.h>
 #include <Vector.h>
+#include <DefaultGeometry.h>
+#include <RenderObject.h>
+
 
 using namespace GameEngine;
 
@@ -31,6 +34,18 @@ void RegisterEcsControlSystems(flecs::world& world)
 		{
 			currentMoveDir = currentMoveDir + camera.ptr->GetViewDir();
 		}
+		//if (controller.ptr->IsPressed("Shoot"))
+		//{
+		//	Math::Vector3f viewDir = camera.ptr->GetViewDir();
+		//	world.entity()
+		//		.set(Position{ position.x, position.y, position.z })
+		//		.set(Velocity{ viewDir.x, viewDir.y, viewDir.z })
+		//		.set(Gravity{ 0.f, -9.8065f, 0.f })
+				//.set(BouncePlane{ 0.f, 1.f, 0.f, 5.f })
+				//.set(Bounciness{ 1.f })
+		//		.set(EntitySystem::ECS::GeometryPtr{ RenderCore::DefaultGeometry::Cube() })
+		//		.set(EntitySystem::ECS::RenderObjectPtr{ new Render::RenderObject() });
+		//}
 		position.x = position.x + currentMoveDir.Normalized().x * speed.value * world.delta_time();
 		position.y = position.y + currentMoveDir.Normalized().y * speed.value * world.delta_time();
 		position.z = position.z + currentMoveDir.Normalized().z * speed.value * world.delta_time();

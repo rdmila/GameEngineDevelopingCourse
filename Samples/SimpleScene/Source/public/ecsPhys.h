@@ -58,3 +58,9 @@ ECS_STRUCT(Speed,
 	float value;
 });
 
+ECS_STRUCT(DestructionTimer,
+{
+	float value;
+});
+
+ECS_STRUCT(BulletTag, {});
