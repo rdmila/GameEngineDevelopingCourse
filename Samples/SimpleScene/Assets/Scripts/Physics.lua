@@ -82,7 +82,7 @@ end
 local function BulletSearch(it)
 	for bul, bul_pos in ecs.each(it) do
 		for aim, aim_pos in ecs.each(q) do
-			if dist(bul_pos.x, bul_pos.y, bul_pos.z, aim_pos.x, aim_pos.y, aim_pos.z) <= 1.0 then
+			if dist(bul_pos.x, bul_pos.y, bul_pos.z, aim_pos.x, aim_pos.y, aim_pos.z) <= 0.001 then
 				aim_pos.z = 1000.0
 			end
 		end
