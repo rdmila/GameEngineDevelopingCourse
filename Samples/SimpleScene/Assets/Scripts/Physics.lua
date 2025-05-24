@@ -17,15 +17,15 @@ local function gravity(it)
     for pos, vel, grav, plane, ent in ecs.each(it) do
         local planeEpsilon = 0.1
 		
-		if plane.x * pos.x + plane.y * pos.y + plane.z * pos.z < plane.w + planeEpsilon then
-			do return end
+		if plane.x * pos.x + plane.y * pos.y + plane.z * pos.z >= plane.w + planeEpsilon then
+			vel.x = vel.x + grav.x * it.delta_time
+			vel.y = vel.y + grav.y * it.delta_time
+			vel.z = vel.z + grav.z * it.delta_time
 		end
-		
-		vel.x = vel.x + grav.x * it.delta_time
-        vel.y = vel.y + grav.y * it.delta_time
-		vel.z = vel.z + grav.z * it.delta_time
     end
 end
+
+
 
 local function FrictionSystem(it)
     for vel, friction, ent in ecs.each(it) do
