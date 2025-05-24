@@ -42,7 +42,7 @@ namespace GameEngine
 				{
 					assert(World::WorldParser::GetCustomComponents().contains(geometryAttribute->second));
 
-					entity.set(EntitySystem::LevelEditorECS::PositionDesc{ &positionAttribute->second });
+					entity.set(EntitySystem::LevelEditorECS::PositionDesc { new World::LevelObject::ComponentDesc(positionAttribute->second) });
 
 					// Can be set to 0 since it doesn't matter now, will be updated by the system
 					entity.set(EntitySystem::EditorECS::Position{ 0.0f, 0.0f, 0.0f });
